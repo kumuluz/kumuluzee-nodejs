@@ -9,8 +9,8 @@
   "scripts": {
     "lint": "eslint .",
     "flow": "flow check .",
-    "test": "mocha",
-    "build": "node build_script"
+    "build": "node build_script",
+    "test": "npm run build && mocha"
   },
   "keywords": [
     "kumuluz",
