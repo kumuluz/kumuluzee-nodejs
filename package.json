@@ -1,6 +1,6 @@
 {
   "name": "kumuluzee-config",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/index.js",
   "description": "KumuluzEE Node.js module for configuration",
   "engines": {
