@@ -1,4 +1,5 @@
 # KumuluzEE Node.js Config
+[![Build Status](https://travis-ci.org/kumuluz/kumuluzee-nodejs-config.svg?branch=master)](https://travis-ci.org/kumuluz/kumuluzee-nodejs-config)
 
 KumuluzEE Node.js Config is an open-source configuration management for the KumuluzEE framework. It is Node.js package based on [KumuluzEE Config](https://github.com/kumuluz/kumuluzee-config), configuration management library developed for microservices written in Java programming language. It extends basic configuration framework described [here](https://github.com/kumuluz/kumuluzee/wiki/Configuration).
 
@@ -14,7 +15,7 @@ KumuluzEE Node.js Config follows the idea of an unified configuration API for th
 Node version >= 8.0.0:
 
 ```
-$ npm install --save kumuluzee-nodejs-config
+$ npm install --save kumuluzee-config
 ```
 
 Note: if you are installing library on Debian operating system run this command first:
@@ -37,23 +38,23 @@ Each configuration source has its own priority, meaning values from configuratio
 
 Properties can be held in a object using `ConfigBundle` or retrieved using `ConfigurationUtil` function.
 
-**ConfigBundle(ConfigruationObject)**
+**ConfigBundle(ConfigurationObject)**
 
 Creates new object which will automatically load and hold configuration properties. Function accepts object with described properties.
 
 ConfigurationObject is an object with configuration properties where each property can have following options:
-* type (String): type of a field. Possible types: `'number'`, `'string'`, `'boolean'`, `'array'` and `'object'` (note: configuration properties which have `'array'` type and fields property are arrays of objects),
-*   prefixKey (String, optional): value represents the prefix key for the configuration property keys (note: this property can only be used on a first level of object),
-* name (String, optional): overrides field name used to form a configuration key,
-* watch (Boolean, optional): to enable watch for this property set value to true (note: if property also has fields property, watch will be applied to all of its nested properties),
-* fields (ConfigurationObject, optional): if type of current field is 'object' or 'array', fields represent nested values of object.
+* **type** (String): type of a field. Possible types: `'number'`, `'string'`, `'boolean'`, `'array'` and `'object'` (note: configuration properties which have `'array'` type and fields property are arrays of objects),
+*   **prefixKey** (String, optional): value represents the prefix key for the configuration property keys (note: this property can only be used on a first level of object),
+* **name** (String, optional): overrides field name used to form a configuration key,
+* **watch** (Boolean, optional): to enable watch for this property set value to true (note: if property also has fields property, watch will be applied to all of its nested properties),
+* **fields** (ConfigurationObject, optional): if type of current field is 'object' or 'array', fields represent nested values of object.
 
-***.initialze([{ extension }])***
+***.initialize([{ extension }])***
 
 Connects to additional configuration source and populates values. Possible extension values are `'consul'` and `'etcd'`.
 
 ```javascript
-import ConfigBundle from 'kumuluzee-nodejs-config';
+const ConfigBundle = require('kumuluzee-config');
 
 const restConfig = new ConfigBundle({
     prefixKey: 'rest-config',
@@ -67,25 +68,25 @@ const restConfig = new ConfigBundle({
             type: 'boolean'
         },
         stringProperty: {
-            type: 'string'
+            type: 'string',
             watch: true
         }
     }
 });
 
-restConfig.initalize({ extension: 'consul' })
+restConfig.initialize({ extension: 'consul' })
 ```
 
 **ConfigurationUtil**
 
 It is used for retrieving values of configuration parameters from the configuration framework.
 
-***.initialze([{ extension }])***
+***.initialize([{ extension }])***
 
 Connects to additional configuration source. Possible extension values are `'consul'` and `'etcd'`.
 
 ```javascript
-import { ConfigruationUtil } from 'kumuluzee-nodejs-config';
+const ConfigurationUtil = require('kumuluzee-nodejs-config');
 
 const configurationUtil = ConfigurationUtil.initialize({ extension: 'consul' });
 ```
