@@ -19,19 +19,19 @@ class ConfigurationUtilSingleton {
   configurationSources = []
   configuration = null
 
-  constructor() {
-    this.configurationSources.push(EnvironmentConfigurationSource);
-    this.configurationSources.push(FileConfigurationSource);
+  initDefaultConfigurationSources({ configPath }: { configPath: ?string}) {
+    if (this.configurationSources.length === 0) {
+      EnvironmentConfigurationSource.init();
+      this.configurationSources.push(EnvironmentConfigurationSource);
+      FileConfigurationSource.init({ configPath });
+      this.configurationSources.push(FileConfigurationSource);
 
-    // Initialize basic configuration sources
-    this.configurationSources.forEach(configurationSource => {
-      configurationSource.init();
-    });
-
-    this.configurationDispatcher = new ConfigurationDispatcher();
+      this.configurationDispatcher = new ConfigurationDispatcher();
+    }
   }
 
-  async initialize({ extension }: { extension: ?string }, configuraion: MainConfiguration) {
+  async initialize({ extension, configPath }: { extension: ?string, configPath: ?string }, configuraion: MainConfiguration) {
+    this.initDefaultConfigurationSources({ configPath });
     // Initialize extension configuration source
     if (extension === 'etcd') {
       await Etcd2ConfigurationSource.init(this.configurationDispatcher);

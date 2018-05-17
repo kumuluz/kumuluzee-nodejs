@@ -7,20 +7,25 @@ class FileConfigurationSource {
   ordinalNumber = 100;
   yamlFileName = 'config.yaml';
   ymlFileName = 'config.yml';
-  propertiesFileName = 'config.properties';
   doc = null;
 
-  init() {
-    const mainPath = path.dirname(require.main.filename);
+  init({ configPath }: { configPath: ?string }) {
     let file = null;
-    try {
-      file = fs.readFileSync(`${mainPath}/config/${this.ymlFileName}`, 'utf-8');
-    } catch (err) {
-    }
-    if (!file) {
+
+    if (configPath && configPath !== '') {
       try {
-        file = fs.readFileSync(`${mainPath}/config/${this.yamlFileName}`, 'utf-8');
-      } catch (err) {
+        file = fs.readFileSync(configPath, 'utf-8');
+      } catch (err) {}
+    } else {
+      const mainPath = path.dirname(require.main.filename);
+
+      try {
+        file = fs.readFileSync(`${mainPath}/config/${this.ymlFileName}`, 'utf-8');
+      } catch (err) {}
+      if (!file) {
+        try {
+          file = fs.readFileSync(`${mainPath}/config/${this.yamlFileName}`, 'utf-8');
+        } catch (err) {}
       }
     }
 

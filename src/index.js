@@ -9,8 +9,9 @@ type Configuration = ?{
   fields: {[key: string]: Configuration},
 };
 
-type Extension = {
+type Options = {
   extension: string,
+  configPath: string,
 };
 
 class ConfigBundle {
@@ -20,15 +21,15 @@ class ConfigBundle {
     this._configuration = configuration;
   }
 
-  async initialize(extension: Extension) {
+  async initialize(options: Options) {
     if (this._configuration != null) {
       const { prefixKey } = this._configuration;
       if (!prefixKey) {
         console.error('No prefix key provided!');
       } else {
-        extension = extension || { extension: null };
+        options = options || { extension: null, configPath: null };
 
-        await ConfigurationUtil.initialize(extension, this._configuration);
+        await ConfigurationUtil.initialize(options, this._configuration);
 
         await this.populateValues(this, this._configuration, prefixKey, false);
 

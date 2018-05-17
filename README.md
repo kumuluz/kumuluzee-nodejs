@@ -49,9 +49,12 @@ ConfigurationObject is an object with configuration properties where each proper
 * **watch** (Boolean, optional): to enable watch for this property set value to true (note: if property also has fields property, watch will be applied to all of its nested properties),
 * **fields** (ConfigurationObject, optional): if type of current field is 'object' or 'array', fields represent nested values of object.
 
-***.initialize([{ extension }])***
+***.initialize([options])***
 
-Connects to additional configuration source and populates values. Possible extension values are `'consul'` and `'etcd'`.
+Connects to additional configuration source and populates values. Function accepts `options` object with two properties:
+* extension (String, optional): name of additional configuration source, possible values are `'consul'` and `'etcd'`,
+* configPath (String, optional): path to your configuration source file, default values are `'config/config.yml'` or `'config/config.yaml'`.
+
 
 ```javascript
 const ConfigBundle = require('kumuluzee-config');
@@ -81,9 +84,9 @@ restConfig.initialize({ extension: 'consul' })
 
 It is used for retrieving values of configuration parameters from the configuration framework.
 
-***.initialize([{ extension }])***
+***.initialize([options])*** 
 
-Connects to additional configuration source. Possible extension values are `'consul'` and `'etcd'`.
+Connects to additional configuration source. Functions accepts the same object as ConfigBundle's initialize function.
 
 ```javascript
 const ConfigurationUtil = require('kumuluzee-nodejs-config');
