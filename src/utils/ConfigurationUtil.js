@@ -46,6 +46,8 @@ class ConfigurationUtilSingleton {
     this.configurationSources.sort((a, b) => a.ordinalNumber - b.ordinalNumber).reverse();
 
     this.configuration = configuraion;
+
+    return this;
   }
 
   async get(key: string) {

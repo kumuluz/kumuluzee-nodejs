@@ -52,8 +52,8 @@ ConfigurationObject is an object with configuration properties where each proper
 ***.initialize([options])***
 
 Connects to additional configuration source and populates values. Function accepts `options` object with two properties:
-* extension (String, optional): name of additional configuration source, possible values are `'consul'` and `'etcd'`,
-* configPath (String, optional): path to your configuration source file, default values are `'config/config.yml'` or `'config/config.yaml'`.
+* **extension** (String, optional): name of additional configuration source, possible values are `'consul'` and `'etcd'`,
+* **configPath** (String, optional): path to your configuration source file, default values are `'config/config.yml'` or `'config/config.yaml'`.
 
 
 ```javascript
