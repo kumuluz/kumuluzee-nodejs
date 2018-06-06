@@ -30,4 +30,4 @@ const remoteConfig = new ConfigBundle({
     }
 });
 
-//remoteConfig.initialize({extension: "etcd"});
+exports.remoteConfig = remoteConfig;
