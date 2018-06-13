@@ -15,7 +15,7 @@ KumuluzEE Node.js Config follows the idea of an unified configuration API for th
 Node version >= 8.0.0:
 
 ```
-$ npm install --save kumuluzee-config
+$ npm install --save @kumuluz/kumuluzee-config
 ```
 
 Note: if you are installing library on Debian operating system run this command first:
@@ -57,7 +57,7 @@ Connects to additional configuration source and populates values. Function accep
 
 
 ```javascript
-const ConfigBundle = require('kumuluzee-config');
+const ConfigBundle = require('@kumuluz/kumuluzee-config');
 
 const restConfig = new ConfigBundle({
     prefixKey: 'rest-config',
@@ -77,7 +77,7 @@ const restConfig = new ConfigBundle({
     }
 });
 
-restConfig.initialize({ extension: 'consul' })
+exports.remoteConfig = restConfig;
 ```
 
 **ConfigurationUtil**
@@ -89,7 +89,7 @@ It is used for retrieving values of configuration parameters from the configurat
 Connects to additional configuration source. Functions accepts the same object as ConfigBundle's initialize function.
 
 ```javascript
-const ConfigurationUtil = require('kumuluzee-nodejs-config');
+const ConfigurationUtil = require('@kumuluz/kumuluzee-config');
 
 const configurationUtil = ConfigurationUtil.initialize({ extension: 'consul' });
 ```
