@@ -6,8 +6,7 @@ const remoteConfig = new ConfigBundle({
     fields: {
         val1: {
             type: "string",
-            name: "val1",
-            watch: true
+            name: "val1"
         },
         val2: {
             type: "number",

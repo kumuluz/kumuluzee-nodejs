@@ -20,7 +20,14 @@ before("initialize()", async () => {
 
 
 describe("get()", () => {
-    it("should read config from config.yaml", async () => {
+    it("remoteConfig object should have value", () => {
+        expect(remoteConfig.val1).to.be.equal("ab cd");
+        expect(remoteConfig.val3.val31).to.be.equal(true);
+        expect(remoteConfig.val2).to.be.equal(123);
+    });
+
+    /*
+    it("should read config from config.yaml while etcd or consul is running", async () => {
         const val1_read = await util.get("rest-config.val1");
         const val2_read = await util.get("rest-config.val2");
         const val31_read = await util.get("rest-config.val3.val31");
@@ -28,14 +35,5 @@ describe("get()", () => {
         expect(val2_read).to.be.equal(123);
         expect(val31_read).to.be.equal(true);
     });
-
-    it("remoteConfig object should have value", () => {
-        expect(remoteConfig.val1).to.be.equal("ab cd");
-        expect(remoteConfig.val3.val31).to.be.equal(true);
-        expect(remoteConfig.val2).to.be.equal(123);
-    });
-
-    it("should pass tests, because there are none", () => {
-        expect(1).to.be.equal(1);
-    });
+    */
 });
