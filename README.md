@@ -127,7 +127,7 @@ Etcd and Consul implementations support retry delays on watch connection errors.
 
 ## Changelog
 
-Recent changes can be viewed on Github on the [Releases Page](https://github.com/kumuluz/kumuluzee/releases)
+Recent changes can be viewed on Github on the [Releases Page](https://github.com/kumuluz/kumuluzee-nodejs-config/releases)
 
 ## Contribute
 
